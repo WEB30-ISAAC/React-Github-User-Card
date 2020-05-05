@@ -2,21 +2,21 @@ import React from "react";
 import axios from "axios";
 import Followers from './Followers'
 
-const followersArray = ['https://api.github.com/users/MMGroesbeck', 'https://api.github.com/users/shayne-smith', 'https://api.github.com/users/toendthepeace', 'https://api.github.com/users/ScottSmith23', 'https://api.github.com/users/mmussel', 'https://api.github.com/users/frankie95667', 'https://api.github.com/users/sadamexx', 'https://api.github.com/users/biskoi', 'https://api.github.com/users/cdifranco1', 'https://api.github.com/users/justinruss24', 'https://api.github.com/users/MelodyRackham'];
+const followersArray = ['https://api.github.com/users/teaguehannam', 'https://api.github.com/users/MMGroesbeck', 'https://api.github.com/users/shayne-smith', 'https://api.github.com/users/ScottSmith23', 'https://api.github.com/users/mmussel', 'https://api.github.com/users/frankie95667', 'https://api.github.com/users/sadamexx', 'https://api.github.com/users/biskoi', 'https://api.github.com/users/cdifranco1', 'https://api.github.com/users/justinruss24', 'https://api.github.com/users/MelodyRackham'];
 
+const urlName = "Istott"
+const url = `https://cors-anywhere.herokuapp.com/https://api.github.com/users/${urlName}`
 
 export default class App extends React.Component {
   state = {
     profile: [],
-    profileName: ''
+    followers: []
   };
   
 
   componentDidMount() {
-    // const entryPoint = document.querySelector('.cards');
-
     axios
-      .get("https://api.github.com/users/Istott")
+      .get(url, { crossdomain: true})
       .then(res => {
         console.log(res)
         this.setState({ profile: res.data});
@@ -24,28 +24,15 @@ export default class App extends React.Component {
       .catch(err => console.log(err));
 
     followersArray.forEach(item => {
-      axios.get(item)
+      axios.get(`https://cors-anywhere.herokuapp.com/${item}`)
       .then(response => {
         console.log(response.data)
-        this.setState={profileName: response.data.name}
+        this.setState({followers: [...this.state.followers, response.data]})
       })
       .catch(error => {
         console.log("the data was not returned", error)
       });
     });
-
-    // axios
-    //   .get(followersArray)
-    //   .then(response => {
-    //     console.log(response.data)
-    //     followersArray.forEach(item => {
-    //       this.setState={profileName: response.data.name}
-    //     })
-    //   })
-      // .catch(error => {
-      //   console.log("the data was not returned", error)
-      // });
-    // };
   }
 
   render() {
@@ -58,8 +45,8 @@ export default class App extends React.Component {
           </div>
 
           <div className={'title'}><p>Followers</p></div>
-          <div className='card'>
-            {followersArray.map(people => {
+          <div className='followers'>
+            {this.state.followers.map(people => {
               return (<Followers key={people.id} name={people.name} bio={people.bio}/>);
             })}
           </div>

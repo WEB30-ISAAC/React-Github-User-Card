@@ -46,7 +46,6 @@ const Cards = props => {
     return (
         <div className={'cards'}>
             <div className={'card'}>
-                <p>id{props.key}</p>
                 <p>Name: {props.name}</p>
                 <p>Bio: {props.bio}</p>
             </div>
