@@ -93,7 +93,10 @@ body {
 }
 
 .followers {
-  background-color: gray;
+  background: linear-gradient(141deg, #2cb5e8 10%, blue 41%, #2cb5e8 75%);
+  border-radius: 10px;
+  border: 2px #2cb5e8 solid;
+  box-shadow: rgb(224, 133, 15);
 }
 
 .cards {
@@ -113,12 +116,13 @@ body {
   background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   margin-bottom: 30px;
   border: 1px gray solid;
+  font-size: 2rem;
 }
 
 .card img {
   width: 150px;
   height: 150px;
-  border-radius: 3px;
+  border-radius: 5px;
   margin-right: 20px;
 }
 
