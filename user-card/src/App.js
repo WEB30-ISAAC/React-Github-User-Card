@@ -41,7 +41,7 @@ export default class App extends React.Component {
         <div className='cards'>
           <div className='card'>
             <h1>Name: {this.state.profile.name} </h1>
-            <img src={this.state.profile.avatar_url}/>
+            <img src={this.state.profile.avatar_url} alt=''/>
             <h3>Bio: {this.state.profile.bio}</h3>
           </div>
 
